@@ -33,6 +33,19 @@
     <string name="nav_settings">Account</string>
     <string name="nav_logout">Logout</string>
     <string name="nav_header">MiCaddy</string>
+    <string name="nav_rounds">Play a Round</string>
+
+    //String for rounds screen
+    <string name="round_header">Manage Your Rounds</string>
+    <string name="round_start">Start a New Round</string>
+
+    //String for new rounds
+    <string name="round_setup_title">New Round</string>
+    <string name="round_setup_course">Name of Course</string>
+    <string name="round_setup_date">Date</string>
+    <string name="round_setup_set_date">Set Date</string>
+    <string name="round_setup_start">Start Your Round</string>
+    <string name="round_setup_cancel">Cancel</string>
 
     <string name="action_settings">Settings</string>
 </resources>

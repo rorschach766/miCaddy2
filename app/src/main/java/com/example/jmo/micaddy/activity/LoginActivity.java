@@ -182,4 +182,9 @@ public class LoginActivity extends Activity {
         if(pDialog.isShowing())
             pDialog.dismiss();
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }
