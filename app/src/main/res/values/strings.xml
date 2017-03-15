@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">miCaddy</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    //Strings for login screen
+    <string name ="hint_email">Email</string>
+    <string name ="hint_password">Password</string>
+    <string name ="btn_login">LOGIN</string>
+    <string name ="btn_link_to_register">Not a member? Sign up now.</string>
+
+    //Strings for sign-up screen
+    <string name ="hint_firstname">First Name</string>
+    <string name ="hint_secondname">Second Name</string>
+    <string name ="hint_handicap">Handicap</string>
+    <string name ="btn_register">REGISTER</string>
+    <string name="hint_confirmPassword">Confrim Password</string>
+    <string name ="btn_link_to_login">Already registered? Login.</string>
+
+    //Strings for main screen
+    <string name="welcome">Welcome Back</string>
+    <string name="handicap">Your current handicap is: </string>
+
+    //Strings for edit screen
+    <string name="edit_heading">Edit Your Details</string>
+    <string name="edit_btn_delete">Delete Your Account</string>
+    <string name="hint_id">Unique ID</string>
+    <string name="btn_edit">Save Changes</string>
+
+    //String for nav-bar
+    <string name="nav_home">Home</string>
+    <string name="nav_settings">Account</string>
+    <string name="nav_logout">Logout</string>
+    <string name="nav_header">MiCaddy</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
