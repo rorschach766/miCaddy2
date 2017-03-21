@@ -29,6 +29,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
 
     //Table name
     private static  final String TABLE_USER = "user";
+    private static final String TABLE_ROUNDS = "round";
 
     //Columns
     private static final String KEY_ID = "id";
@@ -37,6 +38,9 @@ public class SQLiteHandler extends SQLiteOpenHelper{
     private static final String KEY_SECONDNAME = "lastName";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_HANDICAP = "handicap";
+    private static final String KEY_COURSE_NAME = "courseName";
+    private static final String KEY_DATE = "date";
+    private static final String KEY_GOLFER_ID= "golfer_id";
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -53,12 +57,22 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         db.execSQL(CREATE_LOGIN_TABLE);
 
         Log.d(TAG, "Database tables created");
+
+        String CREATE_ROUNDS_TABLE = "CREATE TABLE " + TABLE_ROUNDS + "("
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_COURSE_NAME + " TEXT, "
+                + KEY_DATE + " TEXT, " + KEY_UID + " TEXT UNIQUE, "
+                + KEY_GOLFER_ID + " TEXT, " + " FOREIGN KEY ("+ KEY_GOLFER_ID +") REFERENCES "
+                + TABLE_USER + "(" +KEY_UID + "))";
+        db.execSQL(CREATE_ROUNDS_TABLE);
+
+        Log.d(TAG, "Rounds table created");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //drop old table
         db.execSQL("DROP TABLE IF EXISTS" + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXSITS" + TABLE_ROUNDS);
 
         onCreate(db);
     }
@@ -80,6 +94,22 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         db.close();
 
         Log.d(TAG, "New user inserted into sqlite" + id);
+    }
+
+    public void createRound(String courseName, String date, String uid, String golferId){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_COURSE_NAME, courseName);
+        values.put(KEY_DATE, date);
+        values.put(KEY_UID, uid);
+        values.put(KEY_GOLFER_ID, golferId);
+
+        long id = db.insert(TABLE_ROUNDS, null, values);
+        db.close();
+
+        Log.d(TAG, "New round inserted into sqlite " + id);
     }
 
     //Get user from DB

@@ -148,8 +148,6 @@ public class LoginActivity extends Activity {
                     Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
-
-
         }, new Response.ErrorListener(){
 
             @Override
