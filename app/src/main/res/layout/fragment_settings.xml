@@ -20,33 +20,6 @@
             android:text="@string/edit_heading"
             android:textSize="30sp"
             android:textAlignment="center"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hint_id"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:paddingRight="40dp"/>
-
-            <TextView
-                android:id="@+id/user_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:padding="10dp"
-                android:maxLines="1"
-                android:inputType="textCapWords"
-                android:textColor="@color/input_login"
-                android:textColorHint="@color/input_login_hint"/>
-        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +44,8 @@
                 android:maxLines="1"
                 android:inputType="textCapWords"
                 android:textColor="@color/input_login"
-                android:textColorHint="@color/input_login_hint"/>
+                android:textColorHint="@color/input_login_hint"
+                android:ellipsize="end"/>
         </LinearLayout>
 
         <LinearLayout

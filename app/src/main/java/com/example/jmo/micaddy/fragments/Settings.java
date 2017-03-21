@@ -67,7 +67,6 @@ public class Settings extends Fragment {
         txtLastName = (EditText) view.findViewById(R.id.lastName);
         txtEmail = (EditText) view.findViewById(R.id.email);
         txtHandicap = (EditText) view.findViewById(R.id.handicap);
-        txtId = (TextView) view.findViewById(R.id.user_id);
         btnDelete = (Button) view.findViewById(R.id.btn_delete);
         btnEdit = (Button) view.findViewById(R.id.btn_edit);
 
@@ -88,9 +87,13 @@ public class Settings extends Fragment {
 
         txtFirstName.setText(firstName);
         txtLastName.setText(lastName);
-        txtId.setText(uid);
         txtEmail.setText(email);
         txtHandicap.setText(handicap);
+
+        txtFirstName.setSelection(txtFirstName.getText().length());
+        txtLastName.setSelection(txtLastName.getText().length());
+        txtEmail.setSelection(txtEmail.getText().length());
+        txtHandicap.setSelection(txtHandicap.getText().length());
 
         btnEdit.setEnabled(false);
         txtFirstName.addTextChangedListener(watcher);
