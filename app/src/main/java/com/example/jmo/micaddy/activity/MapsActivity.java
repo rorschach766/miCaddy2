@@ -2,15 +2,19 @@ package com.example.jmo.micaddy.activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.jmo.micaddy.R;
@@ -28,6 +32,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 /**
  * Created by jmo on 21/03/2017.
  */
@@ -36,7 +42,7 @@ public class MapsActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener{
+        LocationListener {
 
     GoogleMap mMap;
     SupportMapFragment mapFragment;
@@ -44,6 +50,9 @@ public class MapsActivity extends AppCompatActivity
     GoogleApiClient mGoogleApiClient;
     Marker mCurLocationMarker;
     Location mLastLocation;
+    ArrayList<LatLng> MarkerPoints;
+
+    private FloatingActionButton fabAddShot;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,15 +62,19 @@ public class MapsActivity extends AppCompatActivity
         toolbar.setTitle("Your Round");
         setSupportActionBar(toolbar);
 
+        MarkerPoints = new ArrayList<>();
+
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        fabAddShot = (FloatingActionButton) findViewById(R.id.fabAddShot);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        if(mGoogleApiClient != null){
+        if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
     }
@@ -102,16 +115,16 @@ public class MapsActivity extends AppCompatActivity
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
                 buildGoogleApiClient();
                 mMap.setMyLocationEnabled(true);
-            }else {
+            } else {
                 checkLocationPermssions();
             }
-        }else{
+        } else {
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
@@ -130,13 +143,13 @@ public class MapsActivity extends AppCompatActivity
     @Override
     public void onConnected(Bundle bundle) {
 
-        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        if(ContextCompat.checkSelfPermission(this,
+        if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
-                ==PackageManager.PERMISSION_GRANTED){
+                == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
     }
@@ -146,26 +159,34 @@ public class MapsActivity extends AppCompatActivity
 
     }
 
-    public void onLocationChanged(Location location){
+    public void onLocationChanged(Location location) {
 
         mLastLocation = location;
-        if(mCurLocationMarker != null){
+        if (mCurLocationMarker != null) {
             mCurLocationMarker.remove();
         }
 
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
-        markerOptions.title("Current Position");
+        markerOptions.title("Tee");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         mCurLocationMarker = mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
-        if(mGoogleApiClient != null){
+        if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
+
+
+        fabAddShot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newLocation();
+            }
+        });
     }
 
     @Override
@@ -174,10 +195,11 @@ public class MapsActivity extends AppCompatActivity
     }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    public boolean checkLocationPermssions(){
+
+    public boolean checkLocationPermssions() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED){
+                != PackageManager.PERMISSION_GRANTED) {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -185,37 +207,68 @@ public class MapsActivity extends AppCompatActivity
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
-            }else{
+            } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_LOCATION);
             }
             return false;
-            }else{
+        } else {
             return true;
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permssions[], int[] grantResults){
-        switch (requestCode){
-            case MY_PERMISSIONS_REQUEST_LOCATION:{
-                if(grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if(ContextCompat.checkSelfPermission(this,
+                                           String permssions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this,
                             Manifest.permission.ACCESS_FINE_LOCATION)
-                            ==PackageManager.PERMISSION_GRANTED){
-                        if(mGoogleApiClient == null){
+                            == PackageManager.PERMISSION_GRANTED) {
+                        if (mGoogleApiClient == null) {
                             buildGoogleApiClient();
                         }
                         mMap.setMyLocationEnabled(true);
                     }
-                }else{
+                } else {
                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show();
                 }
                 return;
             }
+        }
+    }
+
+    public void newLocation() {
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria, true);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location1 = locationManager.getLastKnownLocation(provider);
+
+        if(location1!= null){
+
+            double lat = location1.getLatitude();
+            double longitude = location1.getLongitude();
+
+            LatLng newLatLng = new LatLng(lat, longitude);
+
+            mMap.addMarker(new MarkerOptions()
+                    .position(newLatLng)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                    .title("Last Shot"));
         }
     }
 
