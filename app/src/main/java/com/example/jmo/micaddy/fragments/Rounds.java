@@ -2,6 +2,7 @@ package com.example.jmo.micaddy.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -47,7 +49,6 @@ public class Rounds extends Fragment implements View.OnClickListener {
     private static final String TAG = Rounds.class.getSimpleName();
     private EditText inputCourseName;
     private Button btnStart;
-    private Button btnCancel;
     private EditText inputDate;
     private ProgressDialog pDialog;
     private SQLiteHandler db;
@@ -68,8 +69,6 @@ public class Rounds extends Fragment implements View.OnClickListener {
 
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
-
-        btnCancel = (Button) view.findViewById(R.id.btn_cancel);
         btnStart = (Button) view.findViewById(R.id.btn_start);
 
         db = new SQLiteHandler(getActivity().getApplicationContext());
@@ -100,15 +99,6 @@ public class Rounds extends Fragment implements View.OnClickListener {
             }
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(),
-                        MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
 
         findViewsById(view);
@@ -123,6 +113,8 @@ public class Rounds extends Fragment implements View.OnClickListener {
         inputDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager inm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inm.hideSoftInputFromWindow(getView().getWindowToken(),0);
                 if(v == inputDate){
                     datePickerDialog.show();
                 }
