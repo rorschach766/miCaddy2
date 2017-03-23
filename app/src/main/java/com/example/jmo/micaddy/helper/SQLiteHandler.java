@@ -60,7 +60,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
 
         String CREATE_ROUNDS_TABLE = "CREATE TABLE " + TABLE_ROUNDS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_COURSE_NAME + " TEXT, "
-                + KEY_DATE + " TEXT, " + KEY_UID + " TEXT UNIQUE, "
+                + KEY_DATE + " TEXT, " + KEY_UID + " TEXT, "
                 + KEY_GOLFER_ID + " TEXT, " + " FOREIGN KEY ("+ KEY_GOLFER_ID +") REFERENCES "
                 + TABLE_USER + "(" +KEY_UID + "))";
         db.execSQL(CREATE_ROUNDS_TABLE);

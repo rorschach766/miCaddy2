@@ -9,4 +9,5 @@
     <color name="btn_login">#26ae90</color>
     <color name="btn_login_bckgrd">#eceef1</color>
     <color name="lbl_name">#333333</color>
+    <color name="btn_round">#ff69b4</color>
 </resources>
