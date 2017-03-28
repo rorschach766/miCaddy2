@@ -159,6 +159,8 @@ public class Rounds extends Fragment implements View.OnClickListener {
                 Log.d(TAG, "Round Create Response: " + response.toString());
                 hideDialog();
 
+                db.deleteRounds();
+
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");

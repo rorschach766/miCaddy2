@@ -14,4 +14,6 @@ public class AppConfig {
     public static String URL_EDIT_USER = "http://192.168.1.5/MiCaddy/updateUser.php";
 
     public static String URL_CREATE_ROUND = "http://192.168.1.5/MiCaddy/createRound";
+
+    public static String URL_CREATE_HOLE = "http://192.168.1.5/MiCaddy/createHole";
 }

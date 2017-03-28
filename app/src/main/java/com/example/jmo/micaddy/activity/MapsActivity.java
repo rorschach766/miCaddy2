@@ -1,6 +1,9 @@
 package com.example.jmo.micaddy.activity;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -12,12 +15,24 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.jmo.micaddy.MainActivity;
 import com.example.jmo.micaddy.R;
+import com.example.jmo.micaddy.app.AppConfig;
+import com.example.jmo.micaddy.app.AppController;
+import com.example.jmo.micaddy.helper.SQLiteHandler;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -32,27 +47,45 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by jmo on 21/03/2017.
  */
 
 public class MapsActivity extends AppCompatActivity
-        implements OnMapReadyCallback,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-    GoogleMap mMap;
-    SupportMapFragment mapFragment;
-    LocationRequest mLocationRequest;
-    GoogleApiClient mGoogleApiClient;
-    Marker mCurLocationMarker;
-    Location mLastLocation;
-    ArrayList<LatLng> MarkerPoints;
+    private GoogleMap mMap;
+    private SupportMapFragment mapFragment;
+    private LocationRequest mLocationRequest;
+    private GoogleApiClient mGoogleApiClient;
+    private Marker mCurLocationMarker;
+    private ProgressDialog pDialog;
+    private static final String TAG = MapsActivity.class.getSimpleName();
+
+    private SQLiteHandler db;
 
     private FloatingActionButton fabAddShot;
+    private FloatingActionButton fabAddHole;
+
+
+    private int shots;
+    private int numHole = 1;
+    private String par;
+    private String yards;
+    private int totalShots = 0;
+
+    private Dialog dialog;
+    private EditText holeNum;
+    private EditText holeYards;
+    private EditText holePar;
+    private TextView txtShotsTotal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,14 +93,46 @@ public class MapsActivity extends AppCompatActivity
         setContentView(R.layout.activity_maps);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMaps);
         toolbar.setTitle("Your Round");
-        setSupportActionBar(toolbar);
 
-        MarkerPoints = new ArrayList<>();
+        setSupportActionBar(toolbar);
+        db = new SQLiteHandler(getApplicationContext());
+
+        newHoleDialog();
+
+        //Progress Dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+
+        ArrayList<LatLng> markerPoints = new ArrayList<>();
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         fabAddShot = (FloatingActionButton) findViewById(R.id.fabAddShot);
+        fabAddHole = (FloatingActionButton) findViewById(R.id.fabCompleteHole);
+
+
+
+        fabAddHole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(numHole < 19){
+                    HashMap<String, String> round = db.getRoundsDetails();
+                    final String uid = round.get("courseUID");
+                    createHole(String.valueOf(numHole-1), uid, yards, par, shots-1);
+
+                    Toast.makeText(getApplicationContext(), "Hole recorded", Toast.LENGTH_SHORT).show();
+                    newHoleDialog();
+                    shots = 0;
+                }else if(numHole == 19){
+                    HashMap<String, String> round = db.getRoundsDetails();
+                    final String uid = round.get("courseUID");
+                    createHole(String.valueOf(numHole-1), uid, yards, par, shots-1);
+                    completeDialog();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -104,7 +169,6 @@ public class MapsActivity extends AppCompatActivity
                 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -122,7 +186,7 @@ public class MapsActivity extends AppCompatActivity
                 buildGoogleApiClient();
                 mMap.setMyLocationEnabled(true);
             } else {
-                checkLocationPermssions();
+                checkLocationPermissions();
             }
         } else {
             buildGoogleApiClient();
@@ -161,25 +225,19 @@ public class MapsActivity extends AppCompatActivity
 
     public void onLocationChanged(Location location) {
 
-        mLastLocation = location;
+        Location mLastLocation = location;
         if (mCurLocationMarker != null) {
             mCurLocationMarker.remove();
         }
 
         final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Tee");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mCurLocationMarker = mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(20));
 
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
-
 
         fabAddShot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +254,7 @@ public class MapsActivity extends AppCompatActivity
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
-    public boolean checkLocationPermssions() {
+    public boolean checkLocationPermissions() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -259,7 +317,6 @@ public class MapsActivity extends AppCompatActivity
         Location location1 = locationManager.getLastKnownLocation(provider);
 
         if(location1!= null){
-
             double lat = location1.getLatitude();
             double longitude = location1.getLongitude();
 
@@ -267,9 +324,147 @@ public class MapsActivity extends AppCompatActivity
 
             mMap.addMarker(new MarkerOptions()
                     .position(newLatLng)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                    .title("Last Shot"));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker))
+                    .title("Shot: " + shots));
+
+            shots++;
+            totalShots++;
         }
     }
 
+    private void newHoleDialog(){
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_holes);
+        dialog.setCancelable(false);
+        dialog.show();
+
+        Button confirm = (Button) dialog.findViewById(R.id.btn_save_hole);
+
+        holeNum = (EditText) dialog.findViewById(R.id.holeNum);
+        holeYards = (EditText) dialog.findViewById(R.id.holeYards);
+        holePar = (EditText) dialog.findViewById(R.id.holePar);
+
+        holeNum.setText(String.valueOf(numHole));
+        holeNum.setEnabled(false);
+
+        holeYards.requestFocus();
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                numHole = Integer.parseInt(holeNum.getText().toString().trim());
+                yards = holeYards.getText().toString().trim();
+                par = holePar.getText().toString().trim();
+
+                if((holeNum.getText().length() != 0) && (holeYards.getText().length() != 0) && (holePar.getText().length() != 0)){
+                    numHole++;
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getApplicationContext(),
+                            "Please check you have entered the correct details", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void completeDialog(){
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_complete);
+        dialog.setCancelable(false);
+        dialog.show();
+
+        Button finish = (Button) dialog.findViewById(R.id.btn_finish);
+        txtShotsTotal = (TextView) dialog.findViewById(R.id.totalShots);
+
+        txtShotsTotal.setText(String.valueOf(totalShots));
+
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(MapsActivity.this,
+                        MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+    }
+
+    private void createHole(final String numHole, final String uid, final String yards, final String par, final int shots){
+
+        String tag_string_req = "req_create_hole";
+
+        pDialog.setMessage("Updating scorecard...");
+        showDialog();
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                AppConfig.URL_CREATE_HOLE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Create hole response: " + response.toString());
+                hideDialog();
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean err = jsonObject.getBoolean("error");
+
+                    if (!err) {
+                        String uid = jsonObject.getString("uid");
+
+                        JSONObject hole = jsonObject.getJSONObject("holes");
+                        String numHole = hole.getString("holeNumber");
+                        String yards = hole.getString("yards");
+                        String par = hole.getString("par");
+                        String shots = hole.getString("shots");
+                        String courseId = hole.getString("id");
+
+                        db.createHole(uid, numHole, courseId, yards, par, Integer.parseInt(shots));
+
+                        Toast.makeText(getApplicationContext(), "Holes saved to scorecard ", Toast.LENGTH_LONG).show();
+                    } else {
+                        String errorMsg = jsonObject.getString("error_msg");
+                        Toast.makeText(getApplicationContext(),
+                                errorMsg, Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Create Hole Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap<>();
+                params.put("holeNumber", numHole);
+                params.put("id", uid);
+                params.put("yards", yards);
+                params.put("par", par);
+                params.put("shots", String.valueOf(shots));
+
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest, tag_string_req);
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
 }

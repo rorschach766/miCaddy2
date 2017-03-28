@@ -53,5 +53,14 @@
     <string name="map_type_sat">Satellite</string>
     <string name="map_type_terrain">Terrain</string>
     <string name="map_type_hybrid">Hybrid</string>
-    <string name="map_find_me">Find Me!</string>
+
+    <string name="add_hole_title">Add new Hole</string>
+    <string name="add_hole_num">Hole Number</string>
+    <string name="add_hole_yards">Yards</string>
+    <string name="add_hole_par">Par</string>
+    <string name="add_hole_btn">Begin Hole</string>
+
+    <string name="complete_title">Round Complete!</string>
+    <string name="complete_intro">You shot a round of:</string>
+    <string name="complete_exit">Exit Round</string>
 </resources>

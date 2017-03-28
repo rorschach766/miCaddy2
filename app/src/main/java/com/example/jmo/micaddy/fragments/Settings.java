@@ -49,7 +49,6 @@ public class Settings extends Fragment {
     private EditText txtHandicap;
     private Button btnDelete;
     private Button btnEdit;
-    private TextView txtId;
     private ProgressDialog pDialog;
 
     private SQLiteHandler db;
@@ -228,6 +227,7 @@ public class Settings extends Fragment {
                         session.setLogin(false);
 
                         db.deleteUsers();
+
                         Intent intent = new Intent(getActivity(),
                                 LoginActivity.class);
                         startActivity(intent);
