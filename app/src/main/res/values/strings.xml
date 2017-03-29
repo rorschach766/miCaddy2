@@ -72,4 +72,6 @@
     <string name="scorecard_yards">Yards</string>
     <string name="scorecard_par">Par</string>
     <string name="scorecard_shots">Shots</string>
+
+    <string name="scorecard_no_rounds">Your last round will appear here.</string>
 </resources>

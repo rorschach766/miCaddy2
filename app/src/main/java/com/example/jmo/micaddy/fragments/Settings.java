@@ -110,6 +110,7 @@ public class Settings extends Fragment {
                 deleteWarning.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         deleteUser(uid);
                     }
                 })
@@ -164,6 +165,8 @@ public class Settings extends Fragment {
 
                         session.setLogin(false);
 
+                        db.deleteHoles();
+                        db.deleteRounds();
                         db.deleteUsers();
                         Intent intent = new Intent(getActivity(),
                                 LoginActivity.class);

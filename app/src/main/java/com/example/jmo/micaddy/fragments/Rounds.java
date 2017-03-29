@@ -94,15 +94,14 @@ public class Rounds extends Fragment implements View.OnClickListener {
 
                 if(!courseName.isEmpty() && !date.isEmpty()){
                     createRound(courseName, date, id);
+                    Intent intent = new Intent(getActivity().getApplicationContext(),
+                            MapsActivity.class);
+                    startActivity(intent);
 
                 }else{
                     Toast.makeText(getActivity().getApplicationContext(),
                             "Please check you have entered the correct details", Toast.LENGTH_LONG).show();
                 }
-
-                Intent intent = new Intent(getActivity().getApplicationContext(),
-                        MapsActivity.class);
-                startActivity(intent);
             }
         });
 
