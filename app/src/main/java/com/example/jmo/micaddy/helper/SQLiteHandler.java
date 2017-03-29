@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.jmo.micaddy.activity.LoginActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -198,6 +199,51 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         Log.d(TAG, "Fetching round from Sqlite" + rounds.toString());
 
         return rounds;
+    }
+
+    /*public HashMap<String, String> getHoles(){
+        HashMap<String, String> holes = new HashMap<String, String>();
+        String selectQuery = "SELECT * FROM " + TABLE_HOLES;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        cursor.moveToFirst();
+        if(cursor.getCount() > 0){
+            holes.put("holeNum", cursor.getString(2));
+            holes.put("yards", cursor.getString(4));
+            holes.put("par", cursor.getString(5));
+            holes.put("shots", cursor.getString(6));
+        }
+
+        cursor.close();
+        db.close();
+
+        Log.d(TAG, "Fetching holes from Sqlite" + holes.toString());
+
+        return holes;
+    }*/
+
+    public ArrayList<HashMap<String, String>> getAllHoles(){
+
+        ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_HOLES, null);
+        cursor.moveToFirst();
+
+        while(cursor.isAfterLast() == false){
+            HashMap<String, String> hashmap = new HashMap<String, String>();
+            hashmap.put("holeNum", cursor.getString(2));
+            hashmap.put("yards", cursor.getString(4));
+            hashmap.put("par", cursor.getString(5));
+            hashmap.put("shots", cursor.getString(6));
+
+            arrayList.add(hashmap);
+            cursor.moveToNext();
+        }
+
+        return arrayList;
     }
 
     public void deleteUsers(){

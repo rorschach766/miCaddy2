@@ -34,6 +34,7 @@
     <string name="nav_logout">Logout</string>
     <string name="nav_header">MiCaddy</string>
     <string name="nav_rounds">Play a Round</string>
+    <string name ="nav_scorecards">Scorecard</string>
 
     //String for rounds screen
     <string name="round_header">Manage Your Rounds</string>
@@ -63,4 +64,12 @@
     <string name="complete_title">Round Complete!</string>
     <string name="complete_intro">You shot a round of:</string>
     <string name="complete_exit">Exit Round</string>
+
+    <string name="scorecard_title">Your Last Scorecard</string>
+    <string name="scorecard_course">Course</string>
+    <string name="scorecard_date">Date</string>
+    <string name="scorecard_hole_num">Hole Number</string>
+    <string name="scorecard_yards">Yards</string>
+    <string name="scorecard_par">Par</string>
+    <string name="scorecard_shots">Shots</string>
 </resources>

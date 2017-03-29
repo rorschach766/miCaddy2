@@ -64,6 +64,9 @@ public class Rounds extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_rounds, container, false);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Create new Round");
+
         inputCourseName = (EditText) view.findViewById(R.id.course_name);
         inputDate = (EditText) view.findViewById(R.id.edit_date);
 
@@ -80,6 +83,10 @@ public class Rounds extends Fragment implements View.OnClickListener {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                db.deleteRounds();
+                db.deleteHoles();
+
                 String courseName = inputCourseName.getText().toString().trim();
                 String date = inputDate.getText().toString().trim();
                 String id = uid;
