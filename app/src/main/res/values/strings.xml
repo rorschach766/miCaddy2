@@ -60,6 +60,7 @@
     <string name="add_hole_yards">Yards</string>
     <string name="add_hole_par">Par</string>
     <string name="add_hole_btn">Begin Hole</string>
+    <string name="add_hole_end_round">Complete Round</string>
 
     <string name="complete_title">Round Complete!</string>
     <string name="complete_intro">You shot a round of:</string>

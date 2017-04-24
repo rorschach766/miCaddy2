@@ -174,10 +174,10 @@ public class Rounds extends Fragment implements View.OnClickListener {
                     if (!error) {
                         String uid = jObj.getString("uid");
 
-                        JSONObject round = jObj.getJSONObject("rounds");
-                        String courseName = round.getString("courseName");
+                        JSONObject round = jObj.getJSONObject("round");
+                        String courseName = round.getString("name");
                         String date = round.getString("date");
-                        String golferId = round.getString("id");
+                        String golferId = round.getString("user");
 
                         db.createRound(courseName, date, uid, golferId);
 
@@ -202,9 +202,9 @@ public class Rounds extends Fragment implements View.OnClickListener {
         }){
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("courseName", courseName);
+                params.put("name", courseName);
                 params.put("date", date);
-                params.put("id", uid);
+                params.put("userId", uid);
                 return params;
             }
         };

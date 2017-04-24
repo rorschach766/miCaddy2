@@ -77,12 +77,14 @@ public class Settings extends Fragment {
         session = new SessionManager(getActivity().getApplicationContext());
 
         HashMap<String, String> user = db.getUserDetails();
+        HashMap<String, String> course = db.getRoundsDetails();
 
         final String firstName = user.get("firstName");
         final String lastName = user.get("lastName");
         final String email = user.get("email");
         final String handicap = user.get("handicap");
         final String uid = user.get("uid");
+        final String courseUid = course.get("courseUID");
 
         txtFirstName.setText(firstName);
         txtLastName.setText(lastName);
@@ -106,11 +108,13 @@ public class Settings extends Fragment {
                 final AlertDialog.Builder deleteWarning = new AlertDialog.Builder(getActivity());
                 deleteWarning.setCancelable(false);
                 deleteWarning.setTitle("Confirm");
-                deleteWarning.setMessage("Are you sure you want to delete your account?");
+                deleteWarning.setMessage("Are you sure you want to delete your account? You will lose all your golf data!");
                 deleteWarning.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        deleteHoles(courseUid);
+                        deleteRounds(uid);
                         deleteUser(uid);
                     }
                 })
@@ -141,6 +145,97 @@ public class Settings extends Fragment {
         getActivity().setTitle("Settings");
     }
 
+    private void deleteHoles(final String uid){
+
+        String tag_string_req = "req_delete_rounds";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DELETE_HOLES, new Response.Listener<String>(){
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Delete response " + response.toString());
+
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean error = jsonObject.getBoolean("error");
+
+                    if(!error){
+                        db.deleteHoles();
+                    }else {
+                        String errorMsg = jsonObject.getString("message");
+                        Toast.makeText(getActivity().getApplicationContext(),
+                                errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Deletion Error: " + error.getMessage());
+                Toast.makeText(getActivity().getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", uid);
+
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest, tag_string_req);
+    }
+
+    private void deleteRounds(final String uid){
+
+        String tag_string_req = "req_delete_rounds";
+
+        StringRequest strRequest = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DELETE_ROUNDS, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Delete response " + response.toString());
+
+                try{
+                    JSONObject jobj = new JSONObject(response);
+                    boolean error = jobj.getBoolean("error");
+
+                    if(!error){
+                        db.deleteRounds();
+                    }else {
+                        String errorMsg = jobj.getString("message");
+                        Toast.makeText(getActivity().getApplicationContext(),
+                                errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Deletion Error: " + error.getMessage());
+                Toast.makeText(getActivity().getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", uid);
+
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(strRequest, tag_string_req);
+    }
+
     private void deleteUser(final String uid) {
 
         String tag_string_req = "req_delete";
@@ -157,7 +252,6 @@ public class Settings extends Fragment {
                 hideDialog();
 
                 try {
-
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
 
@@ -165,8 +259,6 @@ public class Settings extends Fragment {
 
                         session.setLogin(false);
 
-                        db.deleteHoles();
-                        db.deleteRounds();
                         db.deleteUsers();
                         Intent intent = new Intent(getActivity(),
                                 LoginActivity.class);
@@ -195,7 +287,7 @@ public class Settings extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("uid", uid);
+                params.put("id", uid);
 
                 return params;
             }

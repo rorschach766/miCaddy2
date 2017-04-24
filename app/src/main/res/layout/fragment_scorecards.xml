@@ -35,7 +35,7 @@
             android:textSize="15sp"
             android:paddingRight="10dp"/>
 
-        <EditText
+        <TextView
             android:id="@+id/course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +43,6 @@
             android:background="@color/white"
             android:padding="7dp"
             android:maxLines="1"
-            android:inputType="textCapWords"
             android:textColor="@color/input_login"
             android:textColorHint="@color/input_login_hint"
             android:ellipsize="end"/>
@@ -57,7 +56,7 @@
             android:paddingRight="10dp"
             android:paddingLeft="10dp"/>
 
-        <EditText
+        <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +64,6 @@
             android:background="@color/white"
             android:padding="7dp"
             android:maxLines="1"
-            android:inputType="textCapWords"
             android:textColor="@color/input_login"
             android:textColorHint="@color/input_login_hint"
             android:ellipsize="end"/>
@@ -127,7 +125,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,13 +133,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -149,7 +146,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -157,7 +153,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -165,13 +161,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -179,7 +174,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -191,7 +185,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -199,13 +193,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -213,7 +206,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -221,7 +213,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -229,13 +221,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -243,7 +234,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -255,7 +245,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -263,13 +253,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -277,7 +266,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -285,7 +273,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -293,13 +281,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -307,7 +294,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -319,7 +305,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -327,13 +313,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -341,7 +326,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -349,7 +333,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -357,13 +341,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -371,7 +354,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -383,7 +365,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -391,13 +373,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -405,7 +386,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -413,7 +393,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -421,13 +401,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -435,7 +414,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -447,7 +425,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -455,13 +433,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -469,7 +446,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -477,7 +453,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -485,13 +461,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -499,7 +474,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -511,7 +485,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -519,13 +493,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -533,7 +506,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -541,7 +513,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -549,13 +521,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -563,7 +534,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -575,7 +545,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -583,13 +553,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -597,7 +566,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -605,7 +573,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -613,13 +581,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -627,7 +594,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -639,7 +605,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -647,13 +613,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -661,7 +626,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -669,7 +633,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -677,13 +641,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -691,7 +654,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -703,7 +665,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -711,13 +673,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -725,7 +686,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -733,7 +693,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -741,13 +701,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -755,7 +714,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -767,7 +725,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -775,13 +733,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -789,7 +746,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -797,7 +753,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -805,13 +761,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -819,7 +774,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -831,7 +785,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -839,13 +793,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -853,7 +806,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -861,7 +813,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -869,13 +821,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -883,7 +834,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -895,7 +845,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -903,13 +853,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -917,7 +866,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -925,7 +873,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -933,13 +881,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -947,7 +894,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -959,7 +905,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -967,13 +913,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -981,7 +926,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -989,7 +933,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -997,13 +941,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1011,7 +954,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1023,7 +965,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1031,13 +973,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1045,7 +986,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1053,7 +993,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1061,13 +1001,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1075,7 +1014,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1087,7 +1025,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1095,13 +1033,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1109,7 +1046,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1131,7 +1067,7 @@
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1139,7 +1075,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1151,7 +1086,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1159,13 +1094,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1173,7 +1107,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1181,7 +1114,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1189,13 +1122,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1203,7 +1135,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1215,7 +1146,7 @@
             android:paddingTop="20dp"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardHoleNum18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1223,13 +1154,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="2"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardYards18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1237,7 +1167,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1245,7 +1174,7 @@
                 android:paddingRight="20dp"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardPar18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1253,13 +1182,12 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
                 android:layout_weight="1"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/scorecardShots18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1267,7 +1195,6 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:maxLines="1"
-                android:inputType="textCapWords"
                 android:textColor="@color/input_login"
                 android:textColorHint="@color/input_login_hint"
                 android:ellipsize="end"
@@ -1276,9 +1203,4 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
-
-
-
-
 </RelativeLayout>

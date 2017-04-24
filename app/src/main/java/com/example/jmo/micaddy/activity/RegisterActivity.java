@@ -29,6 +29,7 @@ import com.example.jmo.micaddy.helper.SessionManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -93,7 +94,12 @@ public class RegisterActivity extends Activity {
                 if(inputPassword.getText().toString().equals(inputConfirmPassword.getText().toString())){
                     if(!firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() &&
                             !password.isEmpty() && !handicap.isEmpty()){
-                        registerUser(firstName, lastName, email, password, handicap);
+                        if(password.length() >= 8) {
+                            registerUser(firstName, lastName, email, password, handicap);
+                        }else{
+                            Toast.makeText(getApplicationContext(),
+                                    "Password must be more than 8 characters", Toast.LENGTH_LONG).show();
+                        }
                     }else{
                         Toast.makeText(getApplicationContext(),
                                 "Please check you have entered the correct details", Toast.LENGTH_LONG).show();
@@ -166,9 +172,9 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Registration Error: " + error.getMessage());
+                Log.e(TAG, "Register Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        error.getMessage(),Toast.LENGTH_LONG).show();
+                        error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         }){
@@ -184,6 +190,7 @@ public class RegisterActivity extends Activity {
                 return params;
             }
         };
+
 
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }

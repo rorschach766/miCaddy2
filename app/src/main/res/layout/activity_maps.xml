@@ -24,14 +24,14 @@
             android:id="@+id/fabAddShot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_plus_one_white_24dp"/>
+            android:src="@drawable/ic_exposure_plus_1_white_24dp"
+            android:layout_marginRight="10dp"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabCompleteHole"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_check_circle_black_24dp"/>
+            android:src="@drawable/ic_check_circle_white_24dp"/>
 
     </LinearLayout>
 

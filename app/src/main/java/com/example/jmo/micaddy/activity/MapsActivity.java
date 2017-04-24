@@ -339,6 +339,7 @@ public class MapsActivity extends AppCompatActivity
         dialog.show();
 
         Button confirm = (Button) dialog.findViewById(R.id.btn_save_hole);
+        Button endRound = (Button) dialog.findViewById(R.id.btn_finish_round);
 
         holeNum = (EditText) dialog.findViewById(R.id.holeNum);
         holeYards = (EditText) dialog.findViewById(R.id.holeYards);
@@ -349,6 +350,13 @@ public class MapsActivity extends AppCompatActivity
 
         holeYards.requestFocus();
 
+        endRound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                completeDialog();
+            }
+        });
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -382,15 +390,13 @@ public class MapsActivity extends AppCompatActivity
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
                 Intent intent = new Intent(MapsActivity.this,
                         MainActivity.class);
                 startActivity(intent);
                 finish();
+                dialog.dismiss();
             }
         });
-
-
     }
 
     private void createHole(final String numHole, final String uid, final String yards, final String par, final int shots){
@@ -415,12 +421,12 @@ public class MapsActivity extends AppCompatActivity
                     if (!err) {
                         String uid = jsonObject.getString("uid");
 
-                        JSONObject hole = jsonObject.getJSONObject("holes");
-                        String numHole = hole.getString("holeNumber");
+                        JSONObject hole = jsonObject.getJSONObject("hole");
+                        String numHole = hole.getString("number");
                         String yards = hole.getString("yards");
                         String par = hole.getString("par");
                         String shots = hole.getString("shots");
-                        String courseId = hole.getString("id");
+                        String courseId = hole.getString("courseId");
 
                         db.createHole(uid, numHole, courseId, yards, par, Integer.parseInt(shots));
 
