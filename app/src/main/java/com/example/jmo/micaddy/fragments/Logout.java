@@ -14,14 +14,16 @@ import com.example.jmo.micaddy.helper.SQLiteHandler;
 import com.example.jmo.micaddy.helper.SessionManager;
 
 /**
- * Created by jmo on 14/03/2017.
+ * Created by jmo on 14/03/2017. Fragment to handle logout function
  */
 
 public class Logout extends Fragment {
 
+    //SQL items and Session manager declarations
     private SQLiteHandler db;
     private SessionManager session;
 
+    //Method to handle the layout. No layout is used but the view needs to be set
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class Logout extends Fragment {
         return view;
     }
 
+    //Set title of fragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -42,6 +45,7 @@ public class Logout extends Fragment {
         getActivity().setTitle("Logout");
     }
 
+    //Logout function
     public void logOutUser(){
         session.setLogin(false);
 

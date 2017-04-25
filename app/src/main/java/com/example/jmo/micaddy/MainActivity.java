@@ -18,9 +18,13 @@ import com.example.jmo.micaddy.fragments.Rounds;
 import com.example.jmo.micaddy.fragments.Scorecards;
 import com.example.jmo.micaddy.fragments.Settings;
 
+/**
+ * Class to set the view of the nav drawer and an entry point to the application after login
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //On create method to set layout and initialise XML objects for the nav drawer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         displaySelectedScreen(R.id.nav_home);
     }
 
+    //Handles the back press on fragments which lead back to main screen
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    //Displays the nav-drawer options
     private void displaySelectedScreen(int itemId){
 
         Fragment fragment = null;

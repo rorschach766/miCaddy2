@@ -55,12 +55,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by jmo on 21/03/2017.
+ * Created by jmo on 21/03/2017. Activity to load the google maps API and functions to handle
+ * location services, markers and adding a score to the scorecard.
  */
 
 public class MapsActivity extends AppCompatActivity
         implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
+    //Google Maps variables
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
     private LocationRequest mLocationRequest;
@@ -69,24 +71,27 @@ public class MapsActivity extends AppCompatActivity
     private ProgressDialog pDialog;
     private static final String TAG = MapsActivity.class.getSimpleName();
 
+    //SQLite variable
     private SQLiteHandler db;
 
     private FloatingActionButton fabAddShot;
     private FloatingActionButton fabAddHole;
 
-
+    //Variables
     private int shots;
     private int numHole = 1;
     private String par;
     private String yards;
     private int totalShots = 0;
 
+    //Declarations for XML variables
     private Dialog dialog;
     private EditText holeNum;
     private EditText holeYards;
     private EditText holePar;
     private TextView txtShotsTotal;
 
+    //On create method to set layout and initialise XML objects
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +116,6 @@ public class MapsActivity extends AppCompatActivity
         fabAddShot = (FloatingActionButton) findViewById(R.id.fabAddShot);
         fabAddHole = (FloatingActionButton) findViewById(R.id.fabCompleteHole);
 
-
-
         fabAddHole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,11 +133,11 @@ public class MapsActivity extends AppCompatActivity
                     createHole(String.valueOf(numHole-1), uid, yards, par, shots-1);
                     completeDialog();
                 }
-
             }
         });
     }
 
+    //Method onPause
     @Override
     protected void onPause() {
         super.onPause();
@@ -144,6 +147,7 @@ public class MapsActivity extends AppCompatActivity
         }
     }
 
+    //Adds action bar to maps layout
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -151,6 +155,7 @@ public class MapsActivity extends AppCompatActivity
         return true;
     }
 
+    //Method to change map type
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -172,7 +177,7 @@ public class MapsActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
+    //Initialise map layout
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -194,6 +199,7 @@ public class MapsActivity extends AppCompatActivity
         }
     }
 
+    //Method to build APi client
     private synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -203,10 +209,9 @@ public class MapsActivity extends AppCompatActivity
         mGoogleApiClient.connect();
     }
 
-
+    //Method upon connection to API to set location
     @Override
     public void onConnected(Bundle bundle) {
-
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
@@ -219,10 +224,9 @@ public class MapsActivity extends AppCompatActivity
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
+    public void onConnectionSuspended(int i) {}
 
-    }
-
+    //Method to track users position
     public void onLocationChanged(Location location) {
 
         Location mLastLocation = location;
@@ -248,10 +252,9 @@ public class MapsActivity extends AppCompatActivity
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
+    public void onConnectionFailed(ConnectionResult connectionResult) {}
 
-    }
-
+    //Method and variable for maps permissions
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public boolean checkLocationPermissions() {
@@ -299,6 +302,7 @@ public class MapsActivity extends AppCompatActivity
         }
     }
 
+    //Method to set new location and increase shot counter
     public void newLocation() {
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Criteria criteria = new Criteria();
@@ -332,6 +336,7 @@ public class MapsActivity extends AppCompatActivity
         }
     }
 
+    //Dialog for new hole
     private void newHoleDialog(){
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_holes);
@@ -376,6 +381,7 @@ public class MapsActivity extends AppCompatActivity
         });
     }
 
+    //Dialog for round completion
     private void completeDialog(){
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_complete);
@@ -399,6 +405,7 @@ public class MapsActivity extends AppCompatActivity
         });
     }
 
+    //Method to create new hole in SQLite and Database using volley
     private void createHole(final String numHole, final String uid, final String yards, final String par, final int shots){
 
         String tag_string_req = "req_create_hole";
@@ -464,11 +471,13 @@ public class MapsActivity extends AppCompatActivity
         AppController.getInstance().addToRequestQueue(stringRequest, tag_string_req);
     }
 
+    //Method to show dialog
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
     }
 
+    //Method to hide dialog
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();

@@ -53,6 +53,7 @@ public class RegisterActivity extends Activity {
     private SessionManager session;
     private SQLiteHandler db;
 
+    //On create method to set layout and initialise XML objects
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -122,6 +123,7 @@ public class RegisterActivity extends Activity {
         });
     }
 
+    //Method to create new user in SQLite and Database using volley
     private void registerUser(final String firstName, final String lastName, final String email, final String password, final String handicap) {
         String tag_string_req = "req_register";
 
@@ -195,6 +197,7 @@ public class RegisterActivity extends Activity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    //Disable back button
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -203,12 +206,13 @@ public class RegisterActivity extends Activity {
             finish();
         }
 
-
+    //Method to show dialog
     private void showDialog() {
         if(!pDialog.isShowing())
             pDialog.show();
     }
 
+    //Method to hide dialog
     private void hideDialog() {
         if(pDialog.isShowing())
             pDialog.dismiss();

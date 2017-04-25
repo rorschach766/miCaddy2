@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by jmo on 28/02/2017. Class to handle calls to the DB
+ * Created by jmo on 28/02/2017. Class to handle calls to the DB and to set the data in the
+ * application using and SQLite database. Contains methods to be called in various fragments and
+ * activities
  */
 
 public class SQLiteHandler extends SQLiteOpenHelper{
@@ -56,12 +58,12 @@ public class SQLiteHandler extends SQLiteOpenHelper{
     private static final String KEY_PAR = "par";
     private static final String KEY_SHOTS = "shots";
 
+    //Sets the database names and versions
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
-
+    //Creates new SQLite database ready for the JSON response from the PHP scripts
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
@@ -90,9 +92,9 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         db.execSQL(CREATE_HOLES_TABLE);
 
         Log.d(TAG, "Rounds table created");
-
     }
 
+    //Upon change of database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //drop old table
@@ -122,6 +124,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         Log.d(TAG, "New user inserted into sqlite" + id);
     }
 
+    //Create new round from JSON response from PHP scripts
     public void createRound(String courseName, String date, String uid, String golferId){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -138,6 +141,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         Log.d(TAG, "New round inserted into sqlite " + id);
     }
 
+    //Create new hole from JSON response from PHP scripts
     public void createHole(String uid, String holeNum, String courseID, String yards, String par, int shots){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -180,6 +184,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return user;
     }
 
+    //Get round from SQLite database
     public HashMap<String, String> getRoundsDetails() {
         HashMap<String, String> rounds = new HashMap<String, String>();
         String selectQuery = "SELECT * FROM " + TABLE_ROUNDS;
@@ -201,29 +206,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return rounds;
     }
 
-    /*public HashMap<String, String> getHoles(){
-        HashMap<String, String> holes = new HashMap<String, String>();
-        String selectQuery = "SELECT * FROM " + TABLE_HOLES;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        cursor.moveToFirst();
-        if(cursor.getCount() > 0){
-            holes.put("holeNum", cursor.getString(2));
-            holes.put("yards", cursor.getString(4));
-            holes.put("par", cursor.getString(5));
-            holes.put("shots", cursor.getString(6));
-        }
-
-        cursor.close();
-        db.close();
-
-        Log.d(TAG, "Fetching holes from Sqlite" + holes.toString());
-
-        return holes;
-    }*/
-
+    //Get holes from SQL database
     public ArrayList<HashMap<String, String>> getAllHoles(){
 
         ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
@@ -246,6 +229,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         return arrayList;
     }
 
+    //SQLite function to delete users from SQL database
     public void deleteUsers(){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -255,6 +239,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         Log.d(TAG, "Deleted all user info from sqlite");
     }
 
+    //SQLite function to delete rounds from SQL database
     public void deleteRounds(){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -264,6 +249,7 @@ public class SQLiteHandler extends SQLiteOpenHelper{
         Log.d(TAG, "Deleted all rounds from sqlite");
     }
 
+    //SQLite function to delete holes from SQL database
     public void deleteHoles(){
         SQLiteDatabase db = this.getWritableDatabase();
 

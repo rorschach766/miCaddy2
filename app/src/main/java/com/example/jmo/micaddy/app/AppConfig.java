@@ -1,7 +1,7 @@
 package com.example.jmo.micaddy.app;
 
 /**
- * Created by jmo on 06/03/2017.
+ * Created by jmo on 06/03/2017. Class to hold URL's for PHP scripts
  */
 
 public class AppConfig {

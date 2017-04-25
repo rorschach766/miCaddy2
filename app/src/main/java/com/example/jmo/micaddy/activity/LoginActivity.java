@@ -171,16 +171,19 @@ public class LoginActivity extends Activity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    //Show dialog function
     private void showDialog() {
         if(!pDialog.isShowing())
             pDialog.show();
     }
 
+    //Hide dialog function
     private void hideDialog() {
         if(pDialog.isShowing())
             pDialog.dismiss();
     }
 
+    //Disable bck button
     @Override
     public void onBackPressed() {
         finish();

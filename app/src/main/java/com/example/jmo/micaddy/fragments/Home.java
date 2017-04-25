@@ -16,17 +16,20 @@ import com.example.jmo.micaddy.helper.SessionManager;
 import java.util.HashMap;
 
 /**
- * Created by jmo on 07/03/2017.
+ * Created by jmo on 07/03/2017. Fragment for main page.
  */
 
 public class Home extends Fragment {
 
+    //Variables declaration
     private TextView txtName;
     private TextView txtHandicap;
 
+    //SQL items and Session manager declarations
     private SQLiteHandler db;
     protected SessionManager session;
 
+    //On create method to set page layout with XML objects
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class Home extends Fragment {
 
     }
 
+    //Set title of fragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

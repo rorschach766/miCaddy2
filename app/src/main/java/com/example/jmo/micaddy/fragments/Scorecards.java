@@ -22,15 +22,22 @@ import static android.graphics.Color.*;
 import static com.example.jmo.micaddy.R.id.holeYards;
 
 /**
- * Created by jmo on 14/03/2017.
+ * Created by jmo on 14/03/2017. Fragment to display the last round that has been played
  */
 
 public class Scorecards extends Fragment {
 
+    //Variable declarations for XML objects
     private TextView scorecardCourse;
     private TextView scorecardDate;
     private SQLiteHandler db;
 
+    /**
+     * On create method to set layout and initialise XML objects. Owing to the verbose nature of XML
+     * the text view had to be set individually for all 18 holes and then set to an array list in
+     * this method. Also handled are the method to hide and disable the text views if there is not
+     * data to fill the text views.
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -281,14 +288,11 @@ public class Scorecards extends Fragment {
         }
     }
 
+    //Set title of fragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("Scorecards");
-    }
-
-    private void getTotals(){
-
     }
 }

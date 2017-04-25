@@ -41,11 +41,12 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Created by jmo on 14/03/2017.
+ * Created by jmo on 14/03/2017. Fragment to display the statistics of last round played
  */
 
 public class Rounds extends Fragment implements View.OnClickListener {
 
+    //Variable declarations
     private static final String TAG = Rounds.class.getSimpleName();
     private EditText inputCourseName;
     private Button btnStart;
@@ -54,10 +55,13 @@ public class Rounds extends Fragment implements View.OnClickListener {
     private SQLiteHandler db;
     private String uid;
 
+    //Date picker variable declaration
     private DatePickerDialog datePickerDialog;
 
+    //Date formatter variable declaration
     private SimpleDateFormat dateFormatter;
 
+    //On create method to set page layout with XML objects
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState){
@@ -114,6 +118,7 @@ public class Rounds extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    //Set date and time for time picker
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setDateTimeField() {
         inputDate.setOnClickListener(new View.OnClickListener() {
@@ -139,18 +144,21 @@ public class Rounds extends Fragment implements View.OnClickListener {
         },newCalender.get(Calendar.YEAR),newCalender.get(Calendar.MONTH),newCalender.get(Calendar.DAY_OF_MONTH));
     }
 
+    //Set the date/time in the view
     private void findViewsById(View view) {
         inputDate = (EditText) view.findViewById(R.id.edit_date);
         inputDate.setInputType(InputType.TYPE_NULL);
         inputDate.requestFocus();
     }
 
+    //Bring up date picker when clicking edit text box
     public void onClick(View v){
         if(v == inputDate){
             datePickerDialog.show();
         }
     }
 
+    //Method to create new round in SQLite and Database using volley
     private void createRound(final String courseName, final String date, final String uid){
 
         String tag_string_req = "req_round_create";
@@ -211,11 +219,13 @@ public class Rounds extends Fragment implements View.OnClickListener {
         AppController.getInstance().addToRequestQueue(stringRequest, tag_string_req);
     }
 
+    //Method to show dialog
     private void showDialog() {
         if(!pDialog.isShowing())
             pDialog.show();
     }
 
+    //Method to hide dialog
     private void hideDialog() {
         if(pDialog.isShowing())
             pDialog.dismiss();
